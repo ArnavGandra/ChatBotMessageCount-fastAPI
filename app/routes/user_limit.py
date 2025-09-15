@@ -4,10 +4,11 @@ API endpoints for messaging.
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from ..schemas import MessageResponse
-from ..services import process_message
+from ..schemas import message_history_schemas
+from ..services import message_history
 from ..exceptions import LimitExceededException
 from ..utils.dependencies import get_db
+from app.schemas.user_limit_schemas import MessageResponse
 
 router = APIRouter()
 

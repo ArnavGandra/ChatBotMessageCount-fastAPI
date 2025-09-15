@@ -2,10 +2,12 @@
 FastAPI entry point.
 Initializes application, database, and routes.
 """
-
+from app.routes import message_history as messages
 from fastapi import FastAPI
 from .database import Base, engine
-from .routes import messages
+from .routes import user_limit
+from .routes import message_history
+ 
 
 # Create tables (safe for small projects; use Alembic for migrations in prod)
 Base.metadata.create_all(bind=engine)
@@ -18,3 +20,4 @@ app = FastAPI(
 
 # Register routers
 app.include_router(messages.router, prefix="/messages", tags=["Messages"])
+
